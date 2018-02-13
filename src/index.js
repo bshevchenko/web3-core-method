@@ -369,11 +369,12 @@ Method.prototype._confirmTransaction = function (defer, result, payload) {
             .catch(function () {
                 timeoutCount++;
 
-                if (timeoutCount - 1 >= TIMEOUTBLOCK) {
-                    sub.unsubscribe();
-                    promiseResolved = true;
-                    return utils._fireError(new Error('Transaction was not mined within 50 blocks, please make sure your transaction was properly sent. Be aware that it might still be mined!'), defer.eventEmitter, defer.reject);
-                }
+                /** Strings below commented because of https://github.com/ethereum/web3.js/issues/1102 */
+                // if (timeoutCount - 1 >= TIMEOUTBLOCK) {
+                //     sub.unsubscribe();
+                //     promiseResolved = true;
+                //     return utils._fireError(new Error('Transaction was not mined within 50 blocks, please make sure your transaction was properly sent. Be aware that it might still be mined!'), defer.eventEmitter, defer.reject);
+                // }
             });
 
 
